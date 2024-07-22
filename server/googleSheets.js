@@ -2,13 +2,13 @@ const { google } = require('googleapis');
 const { OAuth2 } = google.auth;
 
 const oauth2Client = new OAuth2(
-    '207015306049-tk9k2s91u4qr62dc4qrs1lo3qi3hbjrd.apps.googleusercontent.com',
-    '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',
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET,
     'http://localhost'
 );
 
 oauth2Client.setCredentials({
-    refresh_token: '1//0556_iWB-baFzCgYIARAAGAUSNwF-L9IrwXPEK-tr8W9GAE8Sy5tVpJUegFr77nhsTxA5rVI5nfWAwh8y686mkX8Rl3pn5m40aCI' // Your new refresh token
+    refresh_token: process.env.GOOGLE_REFRESH_TOKEN // Your new refresh token
 });
 
 const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
