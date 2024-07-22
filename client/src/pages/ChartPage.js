@@ -20,8 +20,7 @@ ChartJS.register(
   Legend
 );
 
-const FeedbackPage = () => {
-  const [feedback, setFeedback] = useState([]);
+const ChartPage = () => {
   const [strikes, setStrikes] = useState({});
   const [error, setError] = useState('');
 
@@ -29,9 +28,7 @@ const FeedbackPage = () => {
     const fetchFeedback = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/feedback');
-        console.log('Feedback data:', response.data.data);
         console.log('Strikes data:', response.data.strikes);
-        setFeedback(response.data.data);
         setStrikes(response.data.strikes);
       } catch (error) {
         console.error('Error fetching feedback:', error);
@@ -65,21 +62,8 @@ const FeedbackPage = () => {
 
   return (
     <div>
-      <h1>Employee Feedback " in red  has 3 or more strikes"</h1>
+      <h1>Feedback Chart</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <ul>
-        {feedback.map((item, index) => (
-          <li
-            key={index}
-            style={{
-              color: strikes[item[1]] >= 3 ? 'red' : 'black'
-            }}
-          >
-            {item.join(' - ')}
-          </li>
-        ))}
-      </ul>
-      <h2>Corrective Feedback Chart</h2>
       {Object.keys(strikes).length > 0 ? (
         <Bar data={chartData} options={chartOptions} />
       ) : (
@@ -89,4 +73,4 @@ const FeedbackPage = () => {
   );
 };
 
-export default FeedbackPage;
+export default ChartPage;

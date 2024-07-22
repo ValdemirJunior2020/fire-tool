@@ -26,22 +26,12 @@ async function getSheetData(spreadsheetId, range) {
     }
 }
 
-function checkStrikes(feedbackData) {
-    if (feedbackData.length === 0) {
-        return {};
-    }
-
-    const headers = feedbackData[0];
-    const typeOfFeedbackIndex = headers.indexOf('type of feedback');
-    if (typeOfFeedbackIndex === -1) {
-        throw new Error("Column 'type of feedback' not found in the sheet");
-    }
-
+function checkStrikes(data) {
     const strikes = {};
-    feedbackData.slice(1).forEach(row => {
-        const agent = row[0]; // Assuming the agent's name/ID is in the first column
-        const feedbackType = row[typeOfFeedbackIndex];
-        if (feedbackType.toLowerCase() === 'corrective') {
+    data.slice(1).forEach(row => {
+        const agent = row[1]; // Column C
+        const feedbackType = row[2]; // Column D
+        if (feedbackType && feedbackType.toLowerCase() === 'corrective') {
             if (!strikes[agent]) {
                 strikes[agent] = 0;
             }
