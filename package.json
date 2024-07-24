@@ -6,6 +6,9 @@
     "server": "cd server && npm start",
     "client": "cd client && npm start"
   },
+  "dependencies": {
+    "express": "^4.17.1" // Add any other dependencies your project requires
+  },
   "devDependencies": {
     "concurrently": "^8.2.2"
   },
