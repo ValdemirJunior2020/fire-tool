@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 const { getSheetData, checkStrikes } = require('./googleSheets');
 
 const app = express();
@@ -30,6 +31,17 @@ app.get('/api/feedback', async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 app.listen(PORT, '0.0.0.0', () => {
+=======
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+
+app.listen(PORT, () => {
+>>>>>>> 8418368 (Initial commit)
   console.log(`Server is running on port ${PORT}`);
 });
