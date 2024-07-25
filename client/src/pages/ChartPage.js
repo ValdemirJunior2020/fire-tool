@@ -69,5 +69,8 @@ const ChartPage = () => {
       ) : (
         <p>No data available for the chart.</p>
       )}
-  </div>
-  )}
+    </div>
+  );
+};
+
+export default ChartPage;
