@@ -27,7 +27,7 @@ const ChartPage = () => {
   useEffect(() => {
     const fetchFeedback = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/feedback');
+        const response = await axios.get('https://pure-dawn-42846-23848194c4d0.herokuapp.com/api/feedback');
         console.log('Strikes data:', response.data.strikes);
         setStrikes(response.data.strikes);
       } catch (error) {
@@ -69,8 +69,5 @@ const ChartPage = () => {
       ) : (
         <p>No data available for the chart.</p>
       )}
-    </div>
-  );
-};
-
-export default ChartPage;
+  </div>
+  )}
